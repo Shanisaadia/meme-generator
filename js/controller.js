@@ -3,6 +3,8 @@ var text_title = "Add text here";
 var gCanvas = document.querySelector('#my-canvas');
 var gCtx = gCanvas.getContext('2d');
 var gImg = new Image();
+var x;
+var y;
 
 window.addEventListener('load', drawPlaceholder)
 
@@ -27,7 +29,7 @@ function renderImages() {
 }
 
 function onImgClick(imgId) {
-    gMeme = createMeme(imgId);
+    gMeme = createMeme(imgId, gLineId);
     console.log('New meme was created');
     console.log('gMeme:', gMeme);
 
@@ -51,28 +53,31 @@ function drawPlaceholder(currImgUrl) {
 function drawOverlay(gImg) {
     gCtx.drawImage(gImg, 0, 0, gCanvas.width, gCanvas.height);
     gCtx.fillStyle = 'rgba(30, 144, 255, 0.2)';
-    gCtx.fillRect(gCanvas.width / 5, gCanvas.height / 6, 400, 100);
+    gCtx.fillRect(gCanvas.width / 6, gCanvas.height / 14, 500, 100);
+    x = (gCanvas.width / 6);
+    y = (gCanvas.width / 14);
+    // updateMemeLine(x, y);
 }
 
 function drawText() {
     gCtx.fillStyle = gTxtColor;
     gCtx.strokeStyle = gTxtBorder;
-    gCtx.lineWidth = '4'
+    gCtx.lineWidth = '2'
     gCtx.textBaseline = 'middle';
-    gCtx.font = "50px 'Montserrat'";
+    gCtx.font = getFontPref();
     gCtx.textAlign = gTxtAlign;
-    gCtx.fillText(text_title, gCanvas.width / 5, gCanvas.height / 6);
-    gCtx.strokeText(text_title, gCanvas.width / 5, gCanvas.height / 6);
+    gCtx.fillText(text_title, gCanvas.width / 4, gCanvas.height / 7);
+    gCtx.strokeText(text_title, gCanvas.width / 4, gCanvas.height / 7);
 }
 
 function dynamicText(gImg) {
     document.getElementById('name').addEventListener('keyup', function () {
-        gCtx.clearRect(gCanvas.width / 5, gCanvas.height / 6, 400, 100);
+        gCtx.clearRect(gCanvas.width / 6, gCanvas.height / 14, 500, 100);
         drawOverlay(gImg);
         drawText();
         text_title = this.value;
-        gCtx.fillText(text_title, gCanvas.width / 5, gCanvas.height / 6);
-        gCtx.strokeText(text_title, gCanvas.width / 5, gCanvas.height / 6);
+        gCtx.fillText(text_title, gCanvas.width / 4, gCanvas.height / 7);
+        gCtx.strokeText(text_title, gCanvas.width / 4, gCanvas.height / 7);
         updateMeme(text_title);
     });
 }
@@ -87,8 +92,20 @@ function dynamicText(gImg) {
 // TODO - Add function: delete line
 
 // TODO - Add function: Increase font size
+function onIncreaseTxtSize(){
+    console.log('gTxtSize before:', gTxtSize);
+    gTxtSize++;
+    console.log('gTxtSize after:', gTxtSize);
+    return gTxtSize;
+}
 
 // TODO - Add function: Decrease font size
+function onDecreaseTxtSize(){
+    console.log('gTxtSize before:', gTxtSize);
+    gTxtSize--;
+    console.log('gTxtSize after:', gTxtSize);
+    return gTxtSize;
+}
 
 // User editor: Align text to the left
 function onSetLeft(start) {
@@ -109,20 +126,41 @@ function onSetRight(end) {
 
 // TODO - Add function: Change text border
 function onChangeTxtBorder(ev) {
-    var elTxtBorder = document.querySelector('input[name=border]').value;
-    changeTxtBorder(elTxtBorder);
+    // var elTxtBorder = document.querySelector('input[name=border]').value;
+    changeTxtBorder(document.querySelector('input[name=border]').value);
 }
 
-// TODO - Add function: Change  color = fillStyle
+// TODO - Add function: Change color = fillStyle
 function onChangeTxtColor(ev) {
-    var elTxtColor = document.querySelector('input[name=color]').value;
-    changeTxtColor(elTxtColor);
+    // var elTxtColor = document.querySelector('input[name=color]').value;
+    changeTxtColor(document.querySelector('input[name=color]').value);
 }
 
 // TODO - Add function: Share
 
 // TODO - Add function: Download
 
-function onClearCanvas() {
-    gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
+function onDownloadCanvas(elLink) {
+    const data = gCanvas.toDataURL();
+    elLink.href = data;
+    elLink.download = 'img.jpg';
 }
+
+
+// Handle canvas click events
+// function onCanvasClicked(ev) {
+//     const { offsetX, offsetY } = ev;
+//     const { clientX, clientY } = ev;
+//     console.log(offsetX, offsetY, ev);
+//     // console.log(clientX, clientY);
+
+// var res = gCanvas.getBoundingClientRect();
+// console.log(res);
+
+
+
+//     const clickedLine = gMemes.find(meme => {
+//         return offsetX > meme.x && offsetX < meme.x + gBarWidth && offsetY > meme.y
+//     })
+//     console.log(clickedLine);
+// }

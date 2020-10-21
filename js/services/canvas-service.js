@@ -1,8 +1,12 @@
 'use strict'
 
 var gTxtAlign = 'start';
-var gTxtColor = 'black';
+var gTxtColor = 'white';
 var gTxtBorder = 'black';
+var gTxtSize = 48;
+var gTxtFontFamily = 'impact';
+var gTxtFontFull = '48px impact';
+
 
 // User editor - All functions from the user editor container
 
@@ -38,14 +42,12 @@ function setRight(end) {
 // TODO - Add function: Change font family
 
 // TODO - Add function: Change text border
-
 function changeTxtBorder(elTxtBorder) {
     gTxtBorder = elTxtBorder;
     console.log('Change text border color to:', gTxtBorder);
 }
 
 // TODO - Add function: Change  color = fillStyle
-
 function changeTxtColor(elTxtColor) {
     gTxtColor = elTxtColor;
     console.log('Change text color to:', gTxtColor);
@@ -54,7 +56,12 @@ function changeTxtColor(elTxtColor) {
 // TODO - Add function: Share
 
 // TODO - Add function: Download
+// In the controller
 
-function onClearCanvas() {
-    gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
+
+function getFontPref() {
+    var gTxtFontFull = (gTxtSize + 'px ' + gTxtFontFamily) + '';
+    return gTxtFontFull
 }
+
+
