@@ -31,7 +31,7 @@ function _createImages() {
         images.push(_createImg(15, 'img/meme-imgs/15.jpg', 'happy'));
         images.push(_createImg(16, 'img/meme-imgs/16.jpg', 'happy'));
         images.push(_createImg(17, 'img/meme-imgs/17.jpg', 'happy'));
-        images.push(_createImg(18, '/img/meme-imgs/18.jpg', 'happy'));
+        images.push(_createImg(18, 'img/meme-imgs/18.jpg', 'happy'));
     }
     gImgs = images;
 }
