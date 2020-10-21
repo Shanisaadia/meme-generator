@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meme Generator</title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+
+<body onload="onInit()">
+
+    <header class="main-header">
+        <div class="header-container container flex space-between align-center">
+
+            <div class="logo">Meme Generator</div>
+            <!-- TODO: Change logo to img -->
+            <ul class="main-nav clean-list flex">
+                <li><a href="#">Gallery</a></li>
+                <li><a href="#">Memes</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+
+        </div>
+    </header>
+
+    <main class="main-container container">
+
+        <div class="main-gallery">
+            <!-- TODO: Add div Search for Keyword  -->
+            <!-- TODO: Move img gallery to be render by the js  -->
+            <div class="grid-container-gallery">
+            </div>
+        </div>
+
+        <div class="main-editor">
+
+            <div class="canvas-container">
+                <canvas id="my-canvas" height="700" width="700"></canvas>
+            </div>
+
+            <div class="user-editor">
+
+                <div class="grid-container-editor">
+                    <div class="item item-text">
+                        <input id="name" type="text" value="" /><label for="name"></label>
+                    </div>
+                    <div class="item item-switch">Switch line</div>
+                    <div class="item item-add">Add</div>
+                    <div class="item item-trash" onclick="onClearCanvas()">Trash</div>
+                    <div class="item item-increase">Increase</div>
+                    <div class="item item-decrease">Decrease</div>
+                    <div class="item item-left" onclick="onSetLeft('start')">Left</div>
+                    <div class="item item-center" onclick="onSetCenter('center')">Center</div>
+                    <div class="item item-right" onclick="onSetRight('end')">Right</div>
+                    <div class="item item-font">Font</div>
+                    <div class="item item-stroke">
+
+                        <input name="border" id="border" type="color" value="#000000"
+                            onchange="onChangeTxtBorder(event)" /><label for="border">Stroke</label>
+
+                    </div>
+
+                    <div class="item item-color">
+
+                        <input name="color" id="color" type="color" value="#000000"
+                            onchange="onChangeTxtColor(event)" /><label for="color">Color</label>
+
+                    </div>
+
+                    <div class="item item-share">Share</div>
+                    <div class="item item-download">Download</div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer class="main-footer">
+
+        <div class="footer-container container flex space-between align-center">
+            <div class="logo">Meme Generator</div>
+            <small>All rights reserved 2020</small>
+        </div>
+
+    </footer>
+
+    <script src="js/services/util-service.js"></script>
+    <script src="js/services/img-service.js"></script>
+    <script src="js/services/meme-service.js"></script>
+    <script src="js/services/canvas-service.js"></script>
+    <script src="js/controller.js"></script>
+
+</body>
+
+</html>

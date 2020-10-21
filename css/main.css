@@ -1,0 +1,318 @@
+* {
+    box-sizing: border-box;
+}
+
+/* Fontface */
+
+@font-face {
+    font-family: inco;
+    src: url(/fonts/inconsolata/Inconsolata-Regular.ttf);
+}
+
+@font-face {
+    font-family: play;
+    src: url(/fonts/playfair/PlayfairDisplay-Regular.ttf);
+}
+
+@font-face {
+    font-family: ubuntu;
+    src: url(/fonts/ubuntu/Ubuntu-Light.ttf);
+}
+
+@font-face {
+    font-family: ubuntuBold;
+    src: url(/fonts/ubuntu/Ubuntu-Bold.ttf);
+}
+
+/* BASIC */
+
+html {
+    font-family: play, serif;
+    color: #626262;
+    line-height: 1.76;
+}
+
+body {
+    font-size: 0.875rem;
+    margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: normal;
+    margin: 0;
+    line-height: 1.3;
+}
+
+h2 {
+    font-size: 1.875rem;
+    margin-bottom: 0.666em;
+}
+
+p {
+    margin: 0 0 1.25rem;
+}
+
+img {
+    width: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: #e91e63;
+}
+
+a:hover {
+    color: #000;
+}
+
+/* Layout */
+
+.container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding-left: 1.6rem;
+    padding-right: 1.6rem;
+}
+
+/* Components */
+
+/* Header */
+
+.main-header {
+    height: 140px;
+    background-color: #48b0ff;
+    color: white
+}
+
+.main-header .logo {
+    font-family: inco, monospace;
+    text-transform: uppercase;
+    font-size: 1.875rem;
+    letter-spacing: 0.2em;
+}
+
+.main-header .main-nav {
+    text-transform: uppercase;
+}
+
+.main-header .main-nav li:not(:last-child) {
+    margin-inline-end: 100px;
+}
+
+.main-header .main-nav a {
+    color: inherit;
+}
+
+.main-header .main-nav a:hover {
+    color: #e91e63;
+}
+
+/* Main-container */
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.main-container>* {
+    flex-basis: 100%;
+    margin: 20px;
+    padding: 15px;
+    /* TODO: Remove border */
+    border: 1px solid black;
+    /* TODO: Remove bgc */
+    background-color: rgb(242, 242, 242);
+}
+
+/* Main-gallery */
+
+.main-gallery .grid-container-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-gap: 5px;
+    margin: 10px;
+}
+
+.card {
+    padding: 5px;
+    width: 100%;
+    height: 150px;
+}
+
+/* Main-editor */
+
+.main-editor {
+    display: flex;
+    flex-direction: row;
+}
+
+.main-editor>* {
+    flex-basis: 100%;
+    margin: 10px;
+    padding: 15px;
+    /* TODO: Remove border */
+    border: 1px solid rgb(0, 81, 152);
+    /* TODO: Remove bgc */
+    background-color: rgb(255, 255, 190);
+}
+
+/* Canvas  */
+
+/* .canvas-container {} */
+
+canvas {
+    border: 5px solid rgb(61, 15, 92);
+    width: 100%;
+    height: 100%;
+}
+
+/* User-editor */
+
+.user-editor {
+    width: 100%;
+}
+
+.grid-container-editor {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-template-areas:
+        "text text text text text"
+        ". switch add trash ."
+        "increase decrease left center right"
+        ". font stroke color ."
+        ". . share download .";
+    grid-gap: 5px;
+}
+
+.item {
+    padding: 5px;
+    width: 100%;
+    height: 80px;
+    width: 80px;
+}
+
+.item-text {
+    background-color: #ffb1fc;
+    grid-area: text;
+}
+
+.item-switch {
+    background-color: #f880f4;
+    grid-area: switch;
+}
+
+.item-add {
+    background-color: #f847f2;
+    grid-area: add;
+}
+
+.item-trash {
+    background-color: #fd1ef6;
+    grid-area: trash;
+}
+
+.item-increase {
+    background-color: #bd00b7b9;
+    grid-area: increase;
+}
+
+.item-decrease {
+    background-color: #680065b9;
+    grid-area: decrease;
+}
+
+.item-left {
+    background-color: #1f001eb9;
+    grid-area: left;
+}
+
+.item-center {
+    background-color: #d6ffadb9;
+    grid-area: center;
+}
+
+.item-right {
+    background-color: #b5ff6cb9;
+    grid-area: right;
+}
+
+.item-font {
+    background-color: #98ff31b9;
+    grid-area: font;
+}
+
+.item-stroke {
+    background-color: #6ad301b9;
+    grid-area: stroke;
+}
+
+.item-color {
+    background-color: #4a9400b9;
+    grid-area: color;
+}
+
+.item-share {
+    background-color: #1c3900b9;
+    grid-area: share;
+}
+
+.item-download {
+    background-color: #102100b9;
+    grid-area: download;
+}
+
+/* item look */
+.item {
+    border-radius: 12px;
+    color: white;
+    background-color: rgb(0, 136, 255);
+}
+
+
+/* Footer */
+
+.main-footer {
+    height: 140px;
+    background-color: #48b0ff;
+    color: white
+}
+
+.main-footer .logo {
+    font-family: inco, monospace;
+    text-transform: uppercase;
+    font-size: 1.875rem;
+    letter-spacing: 0.2em;
+}
+
+
+
+
+/* Helpers */
+
+/* flex helpers */
+
+.flex {
+    display: flex;
+}
+
+.flex.space-between {
+    justify-content: space-between;
+}
+
+.flex.align-center {
+    align-items: center;
+}
+
+/* list-helpers */
+
+.clean-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
