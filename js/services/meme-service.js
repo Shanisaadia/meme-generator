@@ -8,9 +8,7 @@ var gImgs;
 var gSelectedLineIdx;
 var gSelectedImgUrl;
 
-
 function createMeme(imgId) {
-    console.log('Creating meme');
     var meme = {
         selectedImgId: imgId,
         selectedImgUrl: `img/meme-imgs/${imgId}.jpg`,
@@ -67,3 +65,27 @@ function getLines() {
 function getMemeImgUrl() {
     return gSelectedImgUrl;
 }
+
+
+// -------------------- Lines section --------------------
+
+function getLine() {
+    return gMeme.lines[gSelectedLineIdx];
+ }
+
+function createLine() {
+    var line = {
+        txt: "New line",
+        size: 48,
+        font: 'impact',
+        align: 'start',
+        fillColor: 'red',
+        strokeColor: 'black',
+        x: 175,
+        y: 250,
+    }
+    gMeme.lines.push(line);
+    gSelectedLineIdx = gMeme.lines.length - 1;
+}
+
+

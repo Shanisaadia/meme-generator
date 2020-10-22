@@ -60,7 +60,7 @@ function drawTxt(line) {
     gCtx.save();
 }
 
-// ------- User editor - All functions from the user editor container -------
+// --------- User editor - All functions from the user editor container ---------
 
 // User editor: Change text
 function onChangeTxt(elTxt) {
@@ -81,9 +81,9 @@ function onLineDown(val) {
 function onLineUp(val) {
     lineUp(val);
 }
-// TODO - Add function: Add new line
+// User editor: Add new line
 function onAddLine() {
-    // addNewLine();
+    addNewLine();
 }
 // User editor: Delete text line
 function onDeleteTxtLine() {
@@ -109,8 +109,10 @@ function onSetCenter(val) {
 function onSetRight(val) {
     setRight(val);
 }
-// TODO - Add function: Change font family
-
+// User editor: Change font
+function onSetFont(font) {
+    setFont(font);
+}    
 // User editor: Change text border/stroke
 function onChangeTxtBorder(ev) {
     changeTxtBorder(document.querySelector('input[name=border]').value);

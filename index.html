@@ -11,6 +11,7 @@
 
 <body onload="onInit()">
 
+    <!-- Header section -->
     <header>
         <section class="container header-wrapper flex align-center">
             <div class="logo flex-1">
@@ -34,6 +35,7 @@
         </section>
     </header>
 
+        <!-- Main section -->
     <main class="main-container container">
 
         <div class="main-gallery">
@@ -43,7 +45,7 @@
 
         <div class="main-editor">
             <div class="canvas-container">
-                <canvas id="my-canvas" height="700" width="700" onclick="onCanvasClicked(event)"></canvas>
+                <canvas id="my-canvas" height="700" width="700"></canvas>
             </div>
             <div class="user-editor">
                 <div class="grid-container-editor">
@@ -67,7 +69,12 @@
                             src="./img/icons/center-text-alignment.png"></div>
                     <div class="item item-right" onclick="onSetRight('end')"><img src="./img/icons/align-to-right.png">
                     </div>
-                    <div class="item item-font">Font</div>
+                    <div class="item item-font">
+                        <select class="lang" onchange="onSetFont(this.value)">
+                            <option value="impact">Impact</option>
+                            <option value="ariel">Ariel</option>
+                        </select>
+                    </div>
                     <div class="item item-stroke">
                         <input name="border" id="border" type="color" value="#000000"
                             onchange="onChangeTxtBorder(event)" /><label for="border"><img
@@ -86,6 +93,7 @@
             </div>
     </main>
 
+        <!-- Footer section -->
     <footer>
         <section class="container">
             <div class="logo"><img class="logo-img-footer" src="./img/logo.png"></div>

@@ -1,10 +1,11 @@
 'use strict'
-var gTxtFontFamily = 'impact';
+var line;
+
+// --------- User editor - All functions from the user editor container ---------
 
 // TODO: Add missing functions
 // 1. Add new line.
-// 2. Select font.
-// 3. Share.
+// 2. Share.
 
 // User editor - All functions from the user editor container
 // User editor: Switch line 
@@ -19,65 +20,85 @@ function switchLine() {
 //TODO: add validation if the line is inside or outside of the canvas
 // User editor: Move Line down
 function lineDown(val) {
-    var currPosT = gMeme.lines[gSelectedLineIdx].y;
-    var newPosY = currPosT - (-val);
-    gMeme.lines[gSelectedLineIdx].y = newPosY;
+    line = getLine();
+    var currPosY = line.y;
+    var newPosY = currPosY - (-val);
+    line.y = newPosY;
     drawCanvas();
 }
 //TODO: add validation if the line is inside or outside of the canvas
 // User editor: Move Line up
 function lineUp(val) {
-    var currPosT = gMeme.lines[gSelectedLineIdx].y;
-    var newPosY = currPosT - val;
-    gMeme.lines[gSelectedLineIdx].y = newPosY;
+    line = getLine();
+    var currPosY = line.y;
+    var newPosY = currPosY - val;
+    line.y = newPosY;
     drawCanvas();
 }
 // TODO - Add function: Add new line
+function addNewLine() {
+    createLine();
+    drawCanvas();
+
+}
+
 
 // User editor: Delete text line
 function deleteTxtLine() {
-    gMeme.lines[gSelectedLineIdx].txt = '';
+    line = getLine();
+    line.txt = '';
     drawCanvas();
 }
 // User editor: Increase font size
 function increaseFontSise() {
-    var currSize = gMeme.lines[gSelectedLineIdx].size;
+    line = getLine();
+    var currSize = line.size;
     var newSize = currSize + 1;
-    gMeme.lines[gSelectedLineIdx].size = newSize;
+    line.size = newSize;
     drawCanvas();
 }
 // User editor: Decrease font size
 function decreaseFontSise() {
-    var currSize = gMeme.lines[gSelectedLineIdx].size;
+    line = getLine();
+    var currSize = line.size;
     var newSize = currSize - 1;
-    gMeme.lines[gSelectedLineIdx].size = newSize;
+    line.size = newSize;
     drawCanvas();
 }
 // User editor: Align text to the left
 function setLeft(val) {
-    gMeme.lines[gSelectedLineIdx].align = val;
+    line = getLine();
+    line.align = val;
     drawCanvas();
 }
 // User editor: Align text to the center
 function setCenter(val) {
-    gMeme.lines[gSelectedLineIdx].align = val;
+    line = getLine();
+    line.align = val;
     drawCanvas();
 }
 // User editor: Align text to the right
 function setRight(val) {
-    gMeme.lines[gSelectedLineIdx].align = val;
+    line = getLine();
+    line.align = val;
     drawCanvas();
 }
-// TODO - Add function: Change font family
-
+// User editor: Change font
+function setFont(font) {
+    line = getLine();
+    line.font = font;
+    drawCanvas();
+}
 // User editor: Change text border/stroke
 function changeTxtBorder(val) {
-    gMeme.lines[gSelectedLineIdx].strokeColor = val;
+    line = getLine();
+    line.strokeColor = val;
     drawCanvas();
 }
 // User editor: Change text color
 function changeTxtColor(val) {
-    gMeme.lines[gSelectedLineIdx].fillColor = val;
+    line = getLine();
+    line.fillColor = val;
     drawCanvas();
 }
 // TODO - Add function: Share
