@@ -38,29 +38,25 @@
 
         <div class="main-gallery">
             <!-- TODO: Add div Search for Keyword  -->
-            <!-- TODO: Move img gallery to be render by the js  -->
-            <div class="grid-container-gallery">
-            </div>
+            <div class="grid-container-gallery"></div>
         </div>
 
         <div class="main-editor">
-
             <div class="canvas-container">
-                <canvas id="my-canvas" height="700" width="700"></canvas>
-                <!-- <canvas id="my-canvas" height="700" width="700" onclick="onCanvasClicked(event)"></canvas> -->
-
+                <canvas id="my-canvas" height="700" width="700" onclick="onCanvasClicked(event)"></canvas>
             </div>
-
             <div class="user-editor">
-
                 <div class="grid-container-editor">
                     <div class="item item-text">
-                        <input id="name" type="text" value="Add text here" /><label for="name"></label>
+                        <input id="Line-txt" type="text" value="" onkeyup="onChangeTxt(elTxt)" /><label
+                            for="name"></label>
                     </div>
-                    <div class="item item-switch"><img
+                    <div class="item item-down" onclick="onLineDown('5')"><img src="./img/icons/arrow-down.png"></div>
+                    <div class="item item-up" onclick="onLineUp('5')"><img src="./img/icons/arrow-up.png"></div>
+                    <div class="item item-switch" onclick="onSwitchLine()"><img
                             src="./img/icons/up-and-down-opposite-double-arrows-side-by-side.png"></div>
-                    <div class="item item-add"><img src="./img/icons/add.png"></div>
-                    <div class="item item-trash" onclick="onClearCanvas()"><img src="./img/icons/trash.png"></div>
+                    <div class="item item-add" onclick="onAddLine()"><img src="./img/icons/add.png"></div>
+                    <div class="item item-trash" onclick="onDeleteTxtLine()"><img src="./img/icons/trash.png"></div>
                     <div class="item item-increase" onclick="onIncreaseTxtSize()"><img
                             src="./img/icons/increase font - icon.png"></div>
                     <div class="item item-decrease" onclick="onDecreaseTxtSize()"><img
@@ -73,51 +69,34 @@
                     </div>
                     <div class="item item-font">Font</div>
                     <div class="item item-stroke">
-
                         <input name="border" id="border" type="color" value="#000000"
                             onchange="onChangeTxtBorder(event)" /><label for="border"><img
                                 src="./img/icons/text stroke.png"></label>
-
                     </div>
-
                     <div class="item item-color">
-
                         <input name="color" id="color" type="color" value="#000000"
                             onchange="onChangeTxtColor(event)" /><label for="color"><img
                                 src="./img/icons/paint-board-and-brush.png"></label>
-
                     </div>
-
                     <div class="item item-share">Share</div>
-
                     <div class="item item-download">
                         <a class="download" href="#" onclick="onDownloadCanvas(this)" download="">Download</a>
                     </div>
-
                 </div>
-
             </div>
-
     </main>
 
-
-
     <footer>
-
         <section class="container">
             <div class="logo"><img class="logo-img-footer" src="./img/logo.png"></div>
-            <small>© 2014 Blogin.com - All Rights Reserved</small>
+            <small>©All Rights Reserved</small>
         </section>
-
     </footer>
-
-
-
 
     <script src="js/services/util-service.js"></script>
     <script src="js/services/img-service.js"></script>
     <script src="js/services/meme-service.js"></script>
-    <script src="js/services/canvas-service.js"></script>
+    <script src="js/services/user-editor-service.js"></script>
     <script src="js/controller.js"></script>
 
 </body>

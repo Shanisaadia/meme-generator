@@ -11,6 +11,7 @@ function _createImg(id, url, keyword) {
     }
 }
 
+// TODO: Change this function to a loop functionor anything else..
 function _createImages() {
     var images = []
     if (!images || !images.length) {

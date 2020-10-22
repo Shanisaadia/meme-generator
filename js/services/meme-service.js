@@ -5,34 +5,65 @@ var gCtx;
 var gMemes = [];
 var gMeme;
 var gImgs;
-var gLineId = 100;
+var gSelectedLineIdx;
+var gSelectedImgUrl;
 
-function createMeme(imgId, id) {
+
+function createMeme(imgId) {
     console.log('Creating meme');
     var meme = {
         selectedImgId: imgId,
-        selectedImgUrl: 'img/meme-imgs/1.jpg',
+        selectedImgUrl: `img/meme-imgs/${imgId}.jpg`,
         selectedLineIdx: 0,
         lines: [
             {
-                gLineId: id,
-                txt: "First meme",
-                size: 20,
-                align: 'left',
-                color: 'red'
+                txt: "Add text here",
+                size: 48,
+                font: 'impact',
+                align: 'start',
+                fillColor: 'white',
+                strokeColor: 'black',
+                x: 175,
+                y: 85,
+
+            },
+            {
+                txt: "Add text here",
+                size: 48,
+                font: 'impact',
+                align: 'start',
+                fillColor: 'white',
+                strokeColor: 'black',
+                x: 175,
+                y: 600,
             }
         ]
     }
-    gLineId++;
     gMemes.push(meme);
     return meme;
 }
 
-function updateMeme(text_title) {
-    gMeme.lines[0].txt = text_title;    
+function updateMeme(newTxt) {
+    gMeme.lines[gSelectedLineIdx].txt = newTxt;
 }
 
 function updateMemeLine(x, y) {
-    gMeme.lines[0].x = x;    
-    gMeme.lines[0].y = y;    
+    gMeme.lines[gSelectedLineIdx].x = x;
+    gMeme.lines[gSelectedLineIdx].y = y;
+}
+
+function getLineTxt() {
+    return gMeme.lines[gSelectedLineIdx].txt;
+}
+
+function getselectedLineIdx() {
+    return gSelectedLineIdx;
+}
+
+function getLines() {
+    return gMeme.lines;
+}
+
+function getMemeImgUrl() {
+    return gSelectedImgUrl;
 }

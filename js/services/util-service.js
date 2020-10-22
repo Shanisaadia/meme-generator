@@ -1,6 +1,6 @@
 'use strict'
 
-function onClearCanvas() {
+function clearCanvas() {
     gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
 }
 

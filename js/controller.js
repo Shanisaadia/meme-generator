@@ -1,12 +1,8 @@
 'use strict'
-var text_title = "Add text here";
 var gCanvas = document.querySelector('#my-canvas');
 var gCtx = gCanvas.getContext('2d');
 var gImg = new Image();
-var x;
-var y;
-
-window.addEventListener('load', drawPlaceholder)
+var elTxt = document.getElementById('Line-txt');
 
 function onInit() {
     _createImages();
@@ -29,138 +25,105 @@ function renderImages() {
 }
 
 function onImgClick(imgId) {
-    gMeme = createMeme(imgId, gLineId);
-    console.log('New meme was created');
-    console.log('gMeme:', gMeme);
-
-    // TODO: Write it better!
-    var currImg = getImgkById(imgId);
-    var currImgUrl = currImg.url;
-    drawPlaceholder(currImgUrl);
+    gMeme = createMeme(imgId);
+    gSelectedLineIdx = gMeme.selectedLineIdx;
+    gSelectedImgUrl = gMeme.electedImgUrl;
+    // console.log('New meme was created');
+    // console.log('gMeme:', gMeme);
+    drawCanvas();
 }
 
-
-// TODO: Change the position of the text
-function drawPlaceholder(currImgUrl) {
-    gImg.onload = function () {
-        drawOverlay(gImg);
-        drawText();
-        dynamicText(gImg)
-    };
-    gImg.src = currImgUrl;
-}
-
-function drawOverlay(gImg) {
+function drawCanvas() {
+    clearCanvas();
+    gImg.src = gMeme.selectedImgUrl;
     gCtx.drawImage(gImg, 0, 0, gCanvas.width, gCanvas.height);
-    gCtx.fillStyle = 'rgba(30, 144, 255, 0.2)';
-    gCtx.fillRect(gCanvas.width / 6, gCanvas.height / 14, 500, 100);
-    x = (gCanvas.width / 6);
-    y = (gCanvas.width / 14);
-    // updateMemeLine(x, y);
+    drawLines();
 }
 
-function drawText() {
-    gCtx.fillStyle = gTxtColor;
-    gCtx.strokeStyle = gTxtBorder;
+function drawLines() {
+    const lines = getLines();
+    lines.forEach((line, idx) => drawTxt(line, idx));
+}
+
+function drawTxt(line) {
+    if (!line.txt) return;
+
+    gCtx.fillStyle = line.fillColor;
+    gCtx.strokeStyle = line.strokeColor;
+    gCtx.font = `${line.size}px ${line.font}`;
+    gCtx.textAlign = line.align;
     gCtx.lineWidth = '2'
     gCtx.textBaseline = 'middle';
-    gCtx.font = getFontPref();
-    gCtx.textAlign = gTxtAlign;
-    gCtx.fillText(text_title, gCanvas.width / 4, gCanvas.height / 7);
-    gCtx.strokeText(text_title, gCanvas.width / 4, gCanvas.height / 7);
+
+    gCtx.fillText(line.txt, line.x, line.y);
+    gCtx.strokeText(line.txt, line.x, line.y);
+    gCtx.save();
 }
 
-function dynamicText(gImg) {
-    document.getElementById('name').addEventListener('keyup', function () {
-        gCtx.clearRect(gCanvas.width / 6, gCanvas.height / 14, 500, 100);
-        drawOverlay(gImg);
-        drawText();
-        text_title = this.value;
-        gCtx.fillText(text_title, gCanvas.width / 4, gCanvas.height / 7);
-        gCtx.strokeText(text_title, gCanvas.width / 4, gCanvas.height / 7);
-        updateMeme(text_title);
-    });
+// ------- User editor - All functions from the user editor container -------
+
+// User editor: Change text
+function onChangeTxt(elTxt) {
+    var newTxt = elTxt.value;
+    console.log(newTxt);
+    updateMeme(newTxt);
+    drawCanvas();
 }
-
-
-// User editor - All functions from the user editor container
-
-// TODO - Add function: move linu Up/Down
-
-// TODO - Add function: add new line
-
-// TODO - Add function: delete line
-
-// TODO - Add function: Increase font size
-function onIncreaseTxtSize(){
-    console.log('gTxtSize before:', gTxtSize);
-    gTxtSize++;
-    console.log('gTxtSize after:', gTxtSize);
-    return gTxtSize;
+// User editor: Switch line 
+function onSwitchLine() {
+    switchLine();
 }
-
-// TODO - Add function: Decrease font size
-function onDecreaseTxtSize(){
-    console.log('gTxtSize before:', gTxtSize);
-    gTxtSize--;
-    console.log('gTxtSize after:', gTxtSize);
-    return gTxtSize;
+// User editor: Move Line down
+function onLineDown(val) {
+    lineDown(val);
 }
-
+// User editor: Move Line up
+function onLineUp(val) {
+    lineUp(val);
+}
+// TODO - Add function: Add new line
+function onAddLine() {
+    // addNewLine();
+}
+// User editor: Delete text line
+function onDeleteTxtLine() {
+    deleteTxtLine();
+}
+// User editor: Increase font size
+function onIncreaseTxtSize() {
+    increaseFontSise();
+}
+// User editor: Decrease font size
+function onDecreaseTxtSize() {
+    decreaseFontSise();
+}
 // User editor: Align text to the left
-function onSetLeft(start) {
-    setLeft(start);
+function onSetLeft(val) {
+    setLeft(val);
 }
-
 // User editor: Align text to the center
-function onSetCenter(center) {
-    setCenter(center);
+function onSetCenter(val) {
+    setCenter(val);
 }
-
 // User editor: Align text to the right
-function onSetRight(end) {
-    setRight(end);
+function onSetRight(val) {
+    setRight(val);
 }
-
 // TODO - Add function: Change font family
 
-// TODO - Add function: Change text border
+// User editor: Change text border/stroke
 function onChangeTxtBorder(ev) {
-    // var elTxtBorder = document.querySelector('input[name=border]').value;
     changeTxtBorder(document.querySelector('input[name=border]').value);
 }
-
-// TODO - Add function: Change color = fillStyle
+// User editor: Change text color
 function onChangeTxtColor(ev) {
-    // var elTxtColor = document.querySelector('input[name=color]').value;
     changeTxtColor(document.querySelector('input[name=color]').value);
 }
-
 // TODO - Add function: Share
 
-// TODO - Add function: Download
-
+// User editor: download img
 function onDownloadCanvas(elLink) {
     const data = gCanvas.toDataURL();
     elLink.href = data;
     elLink.download = 'img.jpg';
 }
-
-
-// Handle canvas click events
-// function onCanvasClicked(ev) {
-//     const { offsetX, offsetY } = ev;
-//     const { clientX, clientY } = ev;
-//     console.log(offsetX, offsetY, ev);
-//     // console.log(clientX, clientY);
-
-// var res = gCanvas.getBoundingClientRect();
-// console.log(res);
-
-
-
-//     const clickedLine = gMemes.find(meme => {
-//         return offsetX > meme.x && offsetX < meme.x + gBarWidth && offsetY > meme.y
-//     })
-//     console.log(clickedLine);
-// }
