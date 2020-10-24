@@ -2,6 +2,7 @@
 
 var gImgs;
 
+// TODO: Handle ketwprd functionality
 function _createImg(id, url, keyword) {
     return {
         id: id,
@@ -11,7 +12,7 @@ function _createImg(id, url, keyword) {
     }
 }
 
-// TODO: Change this function to a loop functionor anything else..
+// TODO: Change this function to a loop function or anything else..
 function _createImages() {
     var images = []
     if (!images || !images.length) {

@@ -9,3 +9,15 @@ function toggleMenu() {
     console.log(mainMenu);
     mainMenu.classList.toggle('open');
 }
+
+function toggleModal() {
+    document.querySelector('.modal').classList.toggle('screen');
+    document.querySelector('.box').classList.toggle('show');
+}
+
+function openModal() {
+    document.querySelector('.modal-container').classList.remove('hide');        
+  }
+  function closeModal() {
+    document.querySelector('.modal-container').classList.add('hide');        
+  }

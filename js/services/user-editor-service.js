@@ -3,9 +3,7 @@ var line;
 
 // --------- User editor - All functions from the user editor container ---------
 
-// TODO: Add missing functions
-// 1. Add new line.
-// 2. Share.
+// TODO: Add missing functions (Share).
 
 // User editor - All functions from the user editor container
 // User editor: Switch line 
@@ -39,9 +37,7 @@ function lineUp(val) {
 function addNewLine() {
     createLine();
     drawCanvas();
-
 }
-
 
 // User editor: Delete text line
 function deleteTxtLine() {
@@ -101,6 +97,7 @@ function changeTxtColor(val) {
     line.fillColor = val;
     drawCanvas();
 }
+
 // TODO - Add function: Share
 
 // TODO - Add function: Download

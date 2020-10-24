@@ -4,17 +4,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Meme Generator</title>
     <link rel="stylesheet" href="./css/main.css">
 </head>
 
 <body onload="onInit()">
 
+    <!-- Modal section -->
+    <div class="modal-container hide flex align-center">
+        <div class="modal ">
+            <button onclick="closeModal()" class="quit modal-item modal-item-button">X</button>
+            <!-- User editor in hte modal -->
+            <div class="modal-main-editor modal-item modal-item-editor">
+                <div class="canvas-container">
+                    <canvas id="my-canvas" height="700" width="700"></canvas>
+                </div>
+                <div class="user-editor">
+                    <div class="grid-container-editor">
+                        <div class="item item-text flex align-center justify-center">
+                            <input id="Line-txt" type="text" value="" onkeyup="onChangeTxt(elTxt)" /><label
+                                for="name"></label>
+                        </div>
+                        <div class="item item-down" onclick="onLineDown('5')">
+                            <img src="./img/icons/arrow-down.png"></div>
+                        <div class="item item-up" onclick="onLineUp('5')">
+                            <img src="./img/icons/arrow-up.png"></div>
+                        <div class="item item-switch" onclick="onSwitchLine()">
+                            <img src="./img/icons/double-arrows.png"></div>
+                        <div class="item item-add" onclick="onAddLine()">
+                            <img src="./img/icons/add.png"></div>
+                        <div class="item item-trash" onclick="onDeleteTxtLine()">
+                            <img src="./img/icons/trash.png"></div>
+                        <div class="item item-increase" onclick="onIncreaseTxtSize()">
+                            <img src="./img/icons/increase font - icon.png"></div>
+                        <div class="item item-decrease" onclick="onDecreaseTxtSize()">
+                            <img src="./img/icons/decrease font - icon.png"></div>
+                        <div class="item item-left" onclick="onSetLeft('start')">
+                            <img src="./img/icons/align-to-left.png"></div>
+                        <div class="item item-center" onclick="onSetCenter('center')">
+                            <img src="./img/icons/center-text-alignment.png"></div>
+                        <div class="item item-right" onclick="onSetRight('end')">
+                            <img src="./img/icons/align-to-right.png"></div>
+                        <div class="item item-font flex align-center justify-center">
+                            <select class="font select-hide" onchange="onSetFont(this.value)">
+                                <option value="impact">Impact</option>
+                                <option value="ariel">Ariel</option>
+                            </select>
+                        </div>
+                        <div class="item item-stroke">
+                            <input class="hide" name="border" id="border" type="color" value="#000000"
+                                onchange="onChangeTxtBorder(event)" /><label for="border">
+                                <img src="./img/icons/text stroke.png"></label>
+                        </div>
+                        <div class="item item-color">
+                            <input class="hide" name="color" id="color" type="color" value="#000000"
+                                onchange="onChangeTxtColor(event)" /><label for="color">
+                                <img src="./img/icons/paint-board-and-brush.png"></label>
+                        </div>
+                        <div class="item item-download flex align-center justify-center">
+                            <a class="download" href="#" onclick="onDownloadCanvas(this)" download="">
+                                Download</a></div>
+                        <div class="item item-share flex align-center justify-center">
+                            Share</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Header section -->
     <header>
         <section class="container header-wrapper flex align-center">
-            <div class="logo flex-1">
+            <div class="logo">
                 <img class="logo-img-header" src="./img/logo.png">
             </div>
             <nav id="mainMenu" class="main-menu-wrapper">
@@ -35,68 +97,19 @@
         </section>
     </header>
 
-        <!-- Main section -->
-    <main class="main-container container">
-
+    <!-- Main section -->
+    <main class="container main-container flex">
         <div class="main-gallery">
             <!-- TODO: Add div Search for Keyword  -->
             <div class="grid-container-gallery"></div>
         </div>
 
-        <div class="main-editor">
-            <div class="canvas-container">
-                <canvas id="my-canvas" height="700" width="700"></canvas>
-            </div>
-            <div class="user-editor">
-                <div class="grid-container-editor">
-                    <div class="item item-text">
-                        <input id="Line-txt" type="text" value="" onkeyup="onChangeTxt(elTxt)" /><label
-                            for="name"></label>
-                    </div>
-                    <div class="item item-down" onclick="onLineDown('5')"><img src="./img/icons/arrow-down.png"></div>
-                    <div class="item item-up" onclick="onLineUp('5')"><img src="./img/icons/arrow-up.png"></div>
-                    <div class="item item-switch" onclick="onSwitchLine()"><img
-                            src="./img/icons/up-and-down-opposite-double-arrows-side-by-side.png"></div>
-                    <div class="item item-add" onclick="onAddLine()"><img src="./img/icons/add.png"></div>
-                    <div class="item item-trash" onclick="onDeleteTxtLine()"><img src="./img/icons/trash.png"></div>
-                    <div class="item item-increase" onclick="onIncreaseTxtSize()"><img
-                            src="./img/icons/increase font - icon.png"></div>
-                    <div class="item item-decrease" onclick="onDecreaseTxtSize()"><img
-                            src="./img/icons/decrease font - icon.png"></div>
-                    <div class="item item-left" onclick="onSetLeft('start')"><img src="./img/icons/align-to-left.png">
-                    </div>
-                    <div class="item item-center" onclick="onSetCenter('center')"><img
-                            src="./img/icons/center-text-alignment.png"></div>
-                    <div class="item item-right" onclick="onSetRight('end')"><img src="./img/icons/align-to-right.png">
-                    </div>
-                    <div class="item item-font">
-                        <select class="lang" onchange="onSetFont(this.value)">
-                            <option value="impact">Impact</option>
-                            <option value="ariel">Ariel</option>
-                        </select>
-                    </div>
-                    <div class="item item-stroke">
-                        <input name="border" id="border" type="color" value="#000000"
-                            onchange="onChangeTxtBorder(event)" /><label for="border"><img
-                                src="./img/icons/text stroke.png"></label>
-                    </div>
-                    <div class="item item-color">
-                        <input name="color" id="color" type="color" value="#000000"
-                            onchange="onChangeTxtColor(event)" /><label for="color"><img
-                                src="./img/icons/paint-board-and-brush.png"></label>
-                    </div>
-                    <div class="item item-share">Share</div>
-                    <div class="item item-download">
-                        <a class="download" href="#" onclick="onDownloadCanvas(this)" download="">Download</a>
-                    </div>
-                </div>
-            </div>
     </main>
 
-        <!-- Footer section -->
     <footer>
-        <section class="container">
-            <div class="logo"><img class="logo-img-footer" src="./img/logo.png"></div>
+        <section class="container footer-wrapper flex align-center">
+            <!-- <div class="logo flex align-center"> -->
+            <img class="logo-img-footer" src="./img/logo.png">
             <small>©All Rights Reserved</small>
         </section>
     </footer>

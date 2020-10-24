@@ -9,7 +9,6 @@ function onInit() {
     renderImages();
 }
 
-// Render img gallery
 function renderImages() {
     var images = getImages();
     var strHTML = images.map(function (img) {
@@ -28,8 +27,7 @@ function onImgClick(imgId) {
     gMeme = createMeme(imgId);
     gSelectedLineIdx = gMeme.selectedLineIdx;
     gSelectedImgUrl = gMeme.electedImgUrl;
-    // console.log('New meme was created');
-    // console.log('gMeme:', gMeme);
+    openModal();
     drawCanvas();
 }
 
@@ -47,14 +45,12 @@ function drawLines() {
 
 function drawTxt(line) {
     if (!line.txt) return;
-
     gCtx.fillStyle = line.fillColor;
     gCtx.strokeStyle = line.strokeColor;
     gCtx.font = `${line.size}px ${line.font}`;
     gCtx.textAlign = line.align;
     gCtx.lineWidth = '2'
     gCtx.textBaseline = 'middle';
-
     gCtx.fillText(line.txt, line.x, line.y);
     gCtx.strokeText(line.txt, line.x, line.y);
     gCtx.save();

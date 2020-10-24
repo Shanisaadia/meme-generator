@@ -21,7 +21,7 @@ function createMeme(imgId) {
                 align: 'start',
                 fillColor: 'white',
                 strokeColor: 'black',
-                x: 175,
+                x: 225,
                 y: 85,
 
             },
@@ -32,7 +32,7 @@ function createMeme(imgId) {
                 align: 'start',
                 fillColor: 'white',
                 strokeColor: 'black',
-                x: 175,
+                x: 225,
                 y: 600,
             }
         ]
@@ -81,8 +81,8 @@ function createLine() {
         align: 'start',
         fillColor: 'red',
         strokeColor: 'black',
-        x: 175,
-        y: 250,
+        x: 225,
+        y: 300,
     }
     gMeme.lines.push(line);
     gSelectedLineIdx = gMeme.lines.length - 1;
